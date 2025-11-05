@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Generador de Addenda (Soriana)</h1>
+    <h1>🏪 Generador de Addenda (Soriana)</h1>
 
     <div class="paso">
       <h2>Paso 1: Cargar XML Base</h2>
@@ -46,32 +46,28 @@
       </div>
 
       <div class="paso">
-        <h2>Paso 3: Asignar Códigos de Producto</h2>
+        <h2>Paso 3: Asignar Códigos y Tarimas a Productos</h2>
         <div id="productos-lista"></div>
       </div>
 
       <div class="paso">
-        <h2>Paso 4: Datos de Tarima (Simplificado)</h2>
-        <p>Asumiremos 1 tarima para todos los productos, como en el ejemplo.</p>
-        <div class="form-control">
-          <label for="codigo-tarima"
-            >Código de Barras (SSCC) de la Tarima:</label
-          >
-          <input
-            type="text"
-            id="codigo-tarima"
-            placeholder="Ej: 750046296229620250"
-          />
-        </div>
+        <h2>Paso 4: Definir Tarimas</h2>
+        <div id="tarimas-lista"></div>
+        <button id="btn-agregar-tarima" class="btn-secundario">
+          Agregar Otra Tarima
+        </button>
       </div>
-
       <div class="paso">
         <h2>Paso 5: Generar Addenda</h2>
         <button id="btn-generar">Generar Addenda</button>
         <textarea id="resultado-xml" rows="20" readonly></textarea>
       </div>
     </div>
+    <script type="module" src="./js/tarimas.js"></script>
+    <script type="module" src="./js/getXMLData.js"></script>
+    <script type="module" src="./js/generarAddenda.js"></script>
+    <script type="module" src="./js/theme.js"></script>
 
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>

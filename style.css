@@ -1,22 +1,72 @@
+/* === VARIABLES CSS PARA TEMA OSCURO === */
+:root {
+    /* Colores principales */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --bg-card: #1c2128;
+    
+    /* Colores de texto */
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #656d76;
+    
+    /* Colores de acento */
+    --accent-blue: #58a6ff;
+    --accent-blue-hover: #1f6feb;
+    --accent-green: #56d364;
+    --accent-red: #f85149;
+    --accent-orange: #d29922;
+    
+    /* Bordes */
+    --border-primary: #30363d;
+    --border-secondary: #21262d;
+    --border-focus: #58a6ff;
+    
+    /* Sombras */
+    --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     margin: 20px;
+    line-height: 1.6;
+    transition: all 0.3s ease;
 }
 
 h1, h2 {
-    color: #0056b3;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
+    color: var(--accent-blue);
+    border-bottom: 2px solid var(--border-primary);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.2em;
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .paso {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-small);
+    transition: all 0.3s ease;
+}
+
+.paso:hover {
+    border-color: var(--border-focus);
+    box-shadow: var(--shadow-medium);
 }
 
 .form-grid {
@@ -31,60 +81,457 @@ h1, h2 {
 }
 
 .form-control label {
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
 }
 
 input[type="text"],
+input[type="number"],
+input[type="date"],
 input[type="file"],
 textarea,
 button {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
+    padding: 12px 16px;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+    background-color: var(--bg-tertiary);
+}
+
+input[type="file"] {
+    background-color: var(--bg-tertiary);
+    border: 2px dashed var(--border-primary);
+    cursor: pointer;
+}
+
+input[type="file"]:hover {
+    border-color: var(--accent-blue);
+    background-color: var(--bg-card);
+}
+
+input[type="number"] {
+    width: 100px; 
 }
 
 textarea {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #eee;
-    margin-top: 10px;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'Courier New', Courier, monospace;
+    background-color: var(--bg-secondary);
+    margin-top: 12px;
     height: 300px;
+    resize: vertical;
+    border-radius: 8px;
 }
 
 button {
-    background-color: #007bff;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-hover));
     color: white;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     font-size: 16px;
     border: none;
+    margin-top: 12px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, var(--accent-blue-hover), #0969da);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.btn-secundario {
+    background: linear-gradient(135deg, #6c757d, #495057);
+}
+
+.btn-secundario:hover {
+    background: linear-gradient(135deg, #495057, #343a40);
 }
 
 .hidden {
     display: none;
 }
 
+
+
+/* === PRODUCTOS === */
 .producto-item {
-    border: 1px solid #eee;
-    border-radius: 4px;
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background-color: var(--bg-secondary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.producto-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent-blue), var(--accent-green));
+}
+
+.producto-item:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
 }
 
 .producto-item .descripcion {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1.1em;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
 }
 
 .producto-item .detalles {
     font-size: 0.9em;
-    color: #555;
-    margin: 5px 0;
+    color: var(--text-secondary);
+    margin: 8px 0 16px 0;
+    font-family: 'SF Mono', Monaco, monospace;
+}
+
+.producto-item-controles {
+    display: grid;
+    grid-template-columns: 3fr 1fr; 
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.form-control-small input {
+    width: 100%; 
+}
+
+/* === TARIMAS === */
+.tarima-item {
+    border: 2px dashed var(--accent-blue);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: var(--bg-card);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.tarima-item::before {
+    content: '📦';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 24px;
+    opacity: 0.3;
+}
+
+.tarima-item:hover {
+    border-color: var(--accent-green);
+    background-color: var(--bg-tertiary);
+    transform: scale(1.02);
+}
+
+.tarima-item h3 {
+    margin: 0 0 16px 0;
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.tarima-item-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.tarima-item-header h3 {
+    margin: 0; 
+}
+
+.btn-peligro {
+    background: linear-gradient(135deg, var(--accent-red), #dc2626);
+    font-size: 14px;
+    padding: 10px 16px;
+    margin: 0;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.btn-peligro:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    transform: translateY(-1px);
+}
+
+/* === ESTADOS DE VALIDACIÓN === */
+.campo-valido {
+    border-color: var(--accent-green) !important;
+    background-color: rgba(86, 211, 100, 0.1) !important;
+}
+
+.campo-error {
+    border-color: var(--accent-red) !important;
+    background-color: rgba(248, 81, 73, 0.1) !important;
+}
+
+.mensaje-error {
+    color: var(--accent-red);
+    font-size: 12px;
+    margin-top: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mensaje-error::before {
+    content: '⚠️';
+    font-size: 14px;
+}
+
+/* Estados de carga */
+.cargando {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.cargando::after {
+    content: " 🔄";
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* === PLACEHOLDERS Y FOCUS === */
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Indicador de campos requeridos */
+.campo-requerido::after {
+    content: " *";
+    color: var(--accent-red);
+    font-weight: bold;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .producto-item-controles {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .tarima-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .paso {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+}
+
+/* === ACCESIBILIDAD === */
+button:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* === MENSAJES DE ESTADO === */
+.mensaje-exito {
+    background-color: rgba(86, 211, 100, 0.15);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.mensaje-exito::before {
+    content: '✅';
+    font-size: 16px;
+}
+
+.mensaje-advertencia {
+    background-color: rgba(210, 153, 34, 0.15);
+    border: 1px solid var(--accent-orange);
+    color: var(--accent-orange);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.mensaje-advertencia::before {
+    content: '⚠️';
+    font-size: 16px;
+}
+
+/* === SCROLLBAR DARK THEME === */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* === ANIMACIONES ADICIONALES === */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.paso {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.producto-item,
+.tarima-item {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* === TEMA CLARO === */
+body.tema-claro {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --bg-card: #ffffff;
+    
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    
+    --accent-blue: #0d6efd;
+    --accent-blue-hover: #0b5ed7;
+    --accent-green: #198754;
+    --accent-red: #dc3545;
+    --accent-orange: #fd7e14;
+    
+    --border-primary: #dee2e6;
+    --border-secondary: #e9ecef;
+    --border-focus: #0d6efd;
+    
+    --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* === BOTÓN DE ALTERNANCIA DE TEMA === */
+.btn-tema {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--border-primary);
+    color: var(--text-primary);
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-tema:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--accent-blue);
+}
+
+/* === MEJORAS PARA TEMA CLARO === */
+body.tema-claro .campo-valido {
+    background-color: rgba(25, 135, 84, 0.1) !important;
+}
+
+body.tema-claro .campo-error {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+body.tema-claro .producto-item::before {
+    background: linear-gradient(180deg, var(--accent-blue), var(--accent-green));
+}
+
+body.tema-claro .tarima-item::before {
+    opacity: 0.2;
+}
+
+/* === MODO OSCURO POR DEFECTO === */
+body.tema-oscuro,
+body:not(.tema-claro) {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }
