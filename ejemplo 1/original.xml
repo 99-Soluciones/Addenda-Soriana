@@ -1,0 +1,144 @@
+ <cfdi:Addenda>
+        <DSCargaRemisionProv>
+            <Remision Id="Remision0" RowOrder="0">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <Consecutivo>0</Consecutivo>
+                <FechaRemision>2025-10-15</FechaRemision>
+                <Tienda>5537</Tienda>
+                <TipoMoneda>1</TipoMoneda>
+                <TipoBulto>1</TipoBulto>
+                <EntregaMercancia>5537</EntregaMercancia>
+                <CumpleReqFiscales>true</CumpleReqFiscales>
+                <CantidadBultos>210.00</CantidadBultos>
+                <Subtotal>25724.160000</Subtotal>
+                <Descuentos>0.00</Descuentos>
+                <IEPS>0.00</IEPS>
+                <IVA>20579.33</IVA>
+                <OtrosImpuestos>0.00</OtrosImpuestos>
+                <Total>149200.13</Total>
+                <CantidadPedidos>1</CantidadPedidos>
+                <FechaEntregaMercancia>2025-10-22</FechaEntregaMercancia>
+                <EmpaqueEnCajas>true</EmpaqueEnCajas>
+                <EmpaqueEnTarimas>true</EmpaqueEnTarimas>
+                <CantidadCajasTarimas>1</CantidadCajasTarimas>
+                <Cita>1000432159</Cita>
+            </Remision>
+            <Pedidos Id="Pedidos0" RowOrder="0">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <Tienda>5537</Tienda>
+                <CantidadArticulos>5</CantidadArticulos>
+            </Pedidos>
+            <Articulos Id="Articulos0" RowOrder="0">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <Tienda>5537</Tienda>
+                <Codigo>7500462969622</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+                <CostoNetoUnidadCompra>612.480000</CostoNetoUnidadCompra>
+                <PorcentajeIEPS>0.00</PorcentajeIEPS>
+                <PorcentajeIVA>16.00</PorcentajeIVA>
+            </Articulos>
+            <Articulos Id="Articulos1" RowOrder="1">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <Tienda>5537</Tienda>
+                <Codigo>7500462969646</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+                <CostoNetoUnidadCompra>612.480000</CostoNetoUnidadCompra>
+                <PorcentajeIEPS>0.00</PorcentajeIEPS>
+                <PorcentajeIVA>16.00</PorcentajeIVA>
+            </Articulos>
+            <Articulos Id="Articulos2" RowOrder="2">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <Tienda>5537</Tienda>
+                <Codigo>7500462969615</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+                <CostoNetoUnidadCompra>612.480000</CostoNetoUnidadCompra>
+                <PorcentajeIEPS>0.00</PorcentajeIEPS>
+                <PorcentajeIVA>16.00</PorcentajeIVA>
+            </Articulos>
+            <Articulos Id="Articulos3" RowOrder="3">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <Tienda>5537</Tienda>
+                <Codigo>7500462969639</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+                <CostoNetoUnidadCompra>612.480000</CostoNetoUnidadCompra>
+                <PorcentajeIEPS>0.00</PorcentajeIEPS>
+                <PorcentajeIVA>16.00</PorcentajeIVA>
+            </Articulos>
+            <Articulos Id="Articulos4" RowOrder="4">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <Tienda>5537</Tienda>
+                <Codigo>7500462969608</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+                <CostoNetoUnidadCompra>612.480000</CostoNetoUnidadCompra>
+                <PorcentajeIEPS>0.00</PorcentajeIEPS>
+                <PorcentajeIVA>16.00</PorcentajeIVA>
+            </Articulos>
+            <CajasTarimas Id="CajaTarima0" RowOrder="0">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <NumeroCajaTarima>1</NumeroCajaTarima>
+                <CodigoBarraCajaTarima>750046296229620250</CodigoBarraCajaTarima>
+                <SucursalDistribuir>5537</SucursalDistribuir>
+                <CantidadArticulos>5</CantidadArticulos>
+            </CajasTarimas>
+            <ArticulosPorCajaTarima Id="ArticulosPorCajaTarima0" RowOrder="0">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <NumeroCajaTarima>1</NumeroCajaTarima>
+                <SucursalDistribuir>5537</SucursalDistribuir>
+                <Codigo>7500462969622</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+            </ArticulosPorCajaTarima>
+            <ArticulosPorCajaTarima Id="ArticulosPorCajaTarima1" RowOrder="1">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <NumeroCajaTarima>1</NumeroCajaTarima>
+                <SucursalDistribuir>5537</SucursalDistribuir>
+                <Codigo>7500462969646</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+            </ArticulosPorCajaTarima>
+            <ArticulosPorCajaTarima Id="ArticulosPorCajaTarima2" RowOrder="2">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <NumeroCajaTarima>1</NumeroCajaTarima>
+                <SucursalDistribuir>5537</SucursalDistribuir>
+                <Codigo>7500462969615</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+            </ArticulosPorCajaTarima>
+            <ArticulosPorCajaTarima Id="ArticulosPorCajaTarima3" RowOrder="3">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <NumeroCajaTarima>1</NumeroCajaTarima>
+                <SucursalDistribuir>5537</SucursalDistribuir>
+                <Codigo>7500462969639</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+            </ArticulosPorCajaTarima>
+            <ArticulosPorCajaTarima Id="ArticulosPorCajaTarima4" RowOrder="4">
+                <Proveedor>25799</Proveedor>
+                <Remision>A-30939</Remision>
+                <FolioPedido>0134552638</FolioPedido>
+                <NumeroCajaTarima>1</NumeroCajaTarima>
+                <SucursalDistribuir>5537</SucursalDistribuir>
+                <Codigo>7500462969608</Codigo>
+                <CantidadUnidadCompra>42.00</CantidadUnidadCompra>
+            </ArticulosPorCajaTarima>
+        </DSCargaRemisionProv>
+    </cfdi:Addenda>
+
