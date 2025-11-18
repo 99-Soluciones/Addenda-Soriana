@@ -1,24 +1,24 @@
 # Generador de Addenda Soriana - Arquitectura Mejorada
 
-## 📁 Estructura de Archivos
+## Estructura de Archivos
 
 ```
 /
-├── index.html          # Interfaz principal
+├── index.html         # Interfaz principal
 ├── app.js             # Punto de entrada y coordinación
 ├── style.css          # Estilos mejorados con validación visual
 ├── README.md          # Esta documentación
 └── js/
-    ├── state.js       # ✨ NUEVO: Manejo centralizado del estado
-    ├── validacion.js  # ✨ NUEVO: Validaciones de datos
-    ├── formData.js    # ✨ NUEVO: Recolección de datos del formulario
-    ├── utils.js       # ✨ NUEVO: Utilidades reutilizables
-    ├── getXMLData.js  # 🔄 MEJORADO: Procesamiento de XML
-    ├── tarimas.js     # 🔄 MEJORADO: Manejo de tarimas
-    └── generarAddenda.js # 🔄 MEJORADO: Generación de addenda
+    ├── state.js       #  Manejo centralizado del estado
+    ├── validacion.js  #  Validaciones de datos
+    ├── formData.js    #  Recolección de datos del formulario
+    ├── utils.js       #  Utilidades reutilizables
+    ├── getXMLData.js  #  Procesamiento de XML
+    ├── tarimas.js     #  Manejo de tarimas
+    └── generarAddenda.js #  Generación de addenda
 ```
 
-## 🏗️ Arquitectura Modular
+## Arquitectura Modular
 
 ### 1. **state.js** - Gestor de Estado Global
 - **Propósito**: Centralizar el manejo del estado de la aplicación
@@ -53,7 +53,7 @@
   - `descargarArchivo(contenido, nombre)` - Descargar archivos
   - `manejarError(mensaje, error)` - Manejo de errores
 
-## 🔄 Flujo de la Aplicación
+## Flujo de la Aplicación
 
 1. **Carga de XML** (`getXMLData.js`)
    - Usuario selecciona archivo XML
@@ -72,37 +72,37 @@
    - Se construye el XML de la addenda
    - Se muestra el resultado
 
-## ✨ Mejoras Implementadas
+## Mejoras Implementadas
 
-### 🛡️ **Manejo de Estado Robusto**
+### **Manejo de Estado Robusto**
 - Estado centralizado en lugar de variables globales
 - Funciones específicas para acceder y modificar el estado
 - Verificación de datos cargados antes de operar
 
-### ✅ **Sistema de Validación Completo**
+### **Sistema de Validación Completo**
 - Validación en tiempo real de campos
 - Feedback visual para el usuario
 - Mensajes de error descriptivos
 - Validación antes de generar addenda
 
-### 🎨 **Interfaz Mejorada**
+### **Interfaz Mejorada**
 - Estados visuales para campos (válido/error)
 - Feedback inmediato al usuario
 - Placeholders informativos
 - Estilos responsive mejorados
 
-### 🔧 **Manejo de Errores**
+### **Manejo de Errores**
 - Try-catch en operaciones críticas
 - Mensajes de error informativos
 - Logging para debugging
 - Recuperación graceful de errores
 
-### 📱 **Responsive Design**
+### **Responsive Design**
 - Adaptación a dispositivos móviles
 - Grid system flexible
 - Interfaz usable en pantallas pequeñas
 
-## 🚀 Cómo Usar
+## Cómo Usar
 
 1. **Cargar XML**: Selecciona un archivo CFDI XML válido
 2. **Completar Datos**: Llena todos los campos globales (proveedor, tienda, etc.)
@@ -110,33 +110,14 @@
 4. **Configurar Tarimas**: Agrega tarimas y asigna códigos SSCC
 5. **Generar**: Haz clic en "Generar Addenda" para crear el XML
 
-## 🐛 Problemas Resueltos
+## Problemas Resueltos
 
-- ✅ **Variable `datosCFDI` no definida**: Ahora se maneja centralmente
-- ✅ **Contador de tarimas inconsistente**: Estado centralizado
-- ✅ **Falta de validación**: Sistema completo de validación
-- ✅ **Manejo de errores**: Try-catch y mensajes informativos
-- ✅ **Código duplicado**: Funciones reutilizables en utils
-- ✅ **Responsabilidades mezcladas**: Módulos especializados
+- **Variable `datosCFDI` no definida**: Ahora se maneja centralmente
+- **Contador de tarimas inconsistente**: Estado centralizado
+- **Falta de validación**: Sistema completo de validación
+- **Manejo de errores**: Try-catch y mensajes informativos
+- **Código duplicado**: Funciones reutilizables en utils
+- **Responsabilidades mezcladas**: Módulos especializados
 
-## 🎯 Beneficios de la Nueva Arquitectura
-
-1. **Mantenibilidad**: Código organizado en módulos especializados
-2. **Escalabilidad**: Fácil agregar nuevas funcionalidades
-3. **Debugging**: Estado centralizado facilita encontrar problemas
-4. **Reutilización**: Funciones utilities reutilizables
-5. **Testabilidad**: Funciones puras fáciles de testear
-6. **User Experience**: Validación y feedback inmediato
-
-## 🔄 Migración desde la Versión Anterior
-
-El código anterior funcionará, pero recomendamos usar la nueva estructura porque:
-
-- **Mayor robustez**: Manejo de errores mejorado
-- **Mejor UX**: Validación en tiempo real
-- **Código más limpio**: Separación de responsabilidades
-- **Fácil mantenimiento**: Módulos independientes
-
----
 
 **Desarrollado para Soriana Felix - Proyecto Addenda**
