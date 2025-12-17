@@ -70,7 +70,7 @@ function procesarXML(xmlTexto) {
     );
 
     let impuestos = { TasaIVA: "0.00" };
-    
+
     if (impuestosNode) {
       for (const impuesto of impuestosNode.children) {
         if (impuesto.getAttribute("Impuesto") === "002") {
@@ -82,22 +82,42 @@ function procesarXML(xmlTexto) {
       }
     }
 
-    // Extraer Conceptos (productos)
+    // Extraer Conceptos (productos) debo agregar una validacion, si hay varios productos repetidos, que se unan
     const conceptosNodes = xmlDoc.querySelectorAll("Concepto");
     const conceptos = [];
 
     conceptosNodes.forEach((nodo, index) => {
       const trasladoNode = nodo.querySelector("Traslado");
-      conceptos.push({
-        index: index,
-        Descripcion: nodo.getAttribute("Descripcion"),
-        Cantidad: parseFloat(nodo.getAttribute("Cantidad")).toFixed(2),
-        ValorUnitario: parseFloat(nodo.getAttribute("ValorUnitario")).toFixed(6),
-        Importe: parseFloat(nodo.getAttribute("Importe")).toFixed(6),
-        TasaIVA: trasladoNode
-          ? (parseFloat(trasladoNode.getAttribute("TasaOCuota")) * 100).toFixed(2)
-          : "0.00",
-      });
+      const descripcion = nodo.getAttribute("Descripcion");
+      if (conceptos.some((c) => c.Descripcion === descripcion)) {
+        // Si ya existe un concepto con la misma descripción, sumar cantidades e importes
+        const conceptoExistente = conceptos.find(
+          (c) => c.Descripcion === descripcion
+        );
+        conceptoExistente.Cantidad = (
+          parseFloat(conceptoExistente.Cantidad) +
+          parseFloat(nodo.getAttribute("Cantidad"))
+        ).toFixed(2);
+        conceptoExistente.Importe = (
+          parseFloat(conceptoExistente.Importe) +
+          parseFloat(nodo.getAttribute("Importe"))
+        ).toFixed(6);
+      } else {
+        conceptos.push({
+          index: index,
+          Descripcion: nodo.getAttribute("Descripcion"),
+          Cantidad: parseFloat(nodo.getAttribute("Cantidad")).toFixed(2),
+          ValorUnitario: parseFloat(nodo.getAttribute("ValorUnitario")).toFixed(
+            6
+          ),
+          Importe: parseFloat(nodo.getAttribute("Importe")).toFixed(6),
+          TasaIVA: trasladoNode
+            ? (
+                parseFloat(trasladoNode.getAttribute("TasaOCuota")) * 100
+              ).toFixed(2)
+            : "0.00",
+        });
+      }
     });
 
     // Actualizar el estado global
@@ -108,7 +128,6 @@ function procesarXML(xmlTexto) {
     });
 
     mostrarFormularios(conceptos);
-    
   } catch (error) {
     console.error("Error al parsear el XML:", error);
     alert(
