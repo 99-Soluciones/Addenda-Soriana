@@ -54,6 +54,17 @@ h1 {
     background-clip: text;
 }
 
+.select-tipo {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 .paso {
     background-color: var(--bg-card);
     border: 1px solid var(--border-primary);
@@ -218,12 +229,20 @@ button:active {
     font-family: 'SF Mono', Monaco, monospace;
 }
 
-.producto-item-controles {
+.producto-item-controles-consolidada {
     display: grid;
     grid-template-columns: 3fr 1fr; 
     gap: 20px;
     align-items: flex-end;
 }
+
+.producto-item-controles {
+    display: grid;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+
 
 .form-control-small input {
     width: 100%; 
@@ -241,7 +260,7 @@ button:active {
 }
 
 .tarima-item::before {
-    content: '📦';
+    content: '';
     position: absolute;
     top: 16px;
     right: 16px;
@@ -262,7 +281,8 @@ button:active {
 }
 
 .tarima-item-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
     justify-content: space-between; 
     align-items: center;
     margin-bottom: 16px;
@@ -309,7 +329,7 @@ button:active {
 }
 
 .mensaje-error::before {
-    content: '⚠️';
+    content: '';
     font-size: 14px;
 }
 
@@ -321,7 +341,7 @@ button:active {
 }
 
 .cargando::after {
-    content: " 🔄";
+    content: "";
     animation: spin 1s linear infinite;
 }
 
@@ -402,7 +422,7 @@ button:focus {
 }
 
 .mensaje-exito::before {
-    content: '✅';
+    content: '';
     font-size: 16px;
 }
 
@@ -420,7 +440,7 @@ button:focus {
 }
 
 .mensaje-advertencia::before {
-    content: '⚠️';
+    content: '';
     font-size: 16px;
 }
 

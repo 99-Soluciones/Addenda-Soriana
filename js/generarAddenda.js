@@ -15,17 +15,21 @@ function generarAddenda() {
       return;
     }
 
+    const isConsolidada = document.getElementById("select-tipo-addenda").value === "Consolidada";
+
     const datosCFDI = getDatosCFDI();
 
     // A. Recolectar datos del formulario ---
     const datosGlobales = recolectarDatosGlobales();
-    const tarimas = recolectarDatosTarimas();
-    const productosConCodigo = recolectarDatosProductos(datosCFDI.conceptos);
+
+
+    const tarimas =  isConsolidada ? recolectarDatosTarimas() : [];
+    const productosConCodigo = recolectarDatosProductos(datosCFDI.conceptos, isConsolidada);
 
     // B. Validar todos los datos ---
-    const validacionGlobales = validarDatosGlobales(datosGlobales);
-    const validacionTarimas = validarTarimas(tarimas);
-    const validacionProductos = validarProductos(productosConCodigo);
+    const validacionGlobales = validarDatosGlobales(datosGlobales, isConsolidada);
+    const validacionTarimas =  isConsolidada ? validarTarimas(tarimas) : { errores: [] };
+    const validacionProductos = validarProductos(productosConCodigo, isConsolidada);
 
     // Mostrar errores si los hay
     const todosLosErrores = [
@@ -40,7 +44,7 @@ function generarAddenda() {
     }
 
     // C. Generar la addenda ---
-    const addendaCompleta = construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo);
+    const addendaCompleta = construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo, isConsolidada);
 
     // D. Mostrar el resultado ---
     document.getElementById("resultado-xml").value = addendaCompleta.trim();
@@ -61,7 +65,7 @@ function generarAddenda() {
  * @param {Array} productosConCodigo - Array de productos con códigos
  * @returns {string} XML de la addenda completa
  */
-function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo) {
+function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo, isConsolidada) {
   // Calcular valores necesarios
   const remision = `${datosCFDI.comprobante.Serie || ""}-${datosCFDI.comprobante.Folio}`;
   const fechaRemision = datosCFDI.comprobante.Fecha.substring(0, 10);
@@ -78,8 +82,13 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo)
 
   // Construir secciones del XML
   const articulosXML = construirSeccionArticulos(productosConCodigo, datosGlobales, remision);
-  const cajasTarimasXML = construirSeccionCajasTarimas(tarimas, datosGlobales, remision, datosCFDI.conceptos.length);
-  const articulosPorTarimaXML = construirSeccionArticulosPorTarima(productosConCodigo, datosGlobales, remision);
+  const cajasTarimasXML = isConsolidada ? construirSeccionCajasTarimas(tarimas, datosGlobales, remision, datosCFDI.conceptos.length) : "";
+  const articulosPorTarimaXML = isConsolidada ? construirSeccionArticulosPorTarima(productosConCodigo, datosGlobales, remision) : "";
+
+  // Combinar secciones XML eliminando vacías
+  const seccionesXML = [articulosXML, cajasTarimasXML, articulosPorTarimaXML]
+    .filter(seccion => seccion.trim())
+    .join('\n        ');
 
   // Construir la addenda completa
   return `<cfdi:Addenda>
@@ -103,10 +112,10 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo)
             <Total>${total}</Total>
             <CantidadPedidos>1</CantidadPedidos>
             <FechaEntregaMercancia>${datosGlobales.fechaEntrega}</FechaEntregaMercancia>
-            <EmpaqueEnCajas>true</EmpaqueEnCajas>
+            ${isConsolidada ? `<EmpaqueEnCajas>true</EmpaqueEnCajas>
             <EmpaqueEnTarimas>true</EmpaqueEnTarimas>
             <CantidadCajasTarimas>${totalTarimas}</CantidadCajasTarimas>
-            <Cita>${datosGlobales.cita}</Cita>
+            <Cita>${datosGlobales.cita}</Cita>` : `<FolioNotaEntrada>${datosGlobales.folioNotaEntrada}</FolioNotaEntrada>`}
         </Remision>
         <Pedidos Id="Pedidos0" RowOrder="0">
             <Proveedor>${datosGlobales.proveedor}</Proveedor>
@@ -115,9 +124,7 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo)
             <Tienda>${datosGlobales.tienda}</Tienda>
             <CantidadArticulos>${totalArticulos}</CantidadArticulos>
         </Pedidos>
-        ${articulosXML.trim()}
-        ${cajasTarimasXML.trim()}
-        ${articulosPorTarimaXML.trim()}
+        ${seccionesXML}
     </DSCargaRemisionProv>
 </cfdi:Addenda>`;
 }
@@ -132,8 +139,7 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo)
 function construirSeccionArticulos(productos, datosGlobales, remision) {
   return productos
     .map(
-      (p) => `
-        <Articulos Id="Articulos${p.index}" RowOrder="${p.index}">
+      (p) => `<Articulos Id="Articulos${p.index}" RowOrder="${p.index}">
             <Proveedor>${datosGlobales.proveedor}</Proveedor>
             <Remision>${remision}</Remision>
             <FolioPedido>${datosGlobales.folioPedido}</FolioPedido>

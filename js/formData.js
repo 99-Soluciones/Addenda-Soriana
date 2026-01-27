@@ -8,11 +8,15 @@
  * @returns {Object} Objeto con todos los datos globales
  */
 export function recolectarDatosGlobales() {
+  const isConsolidada = document.getElementById("select-tipo-addenda").value === "Consolidada";
+  const cita = isConsolidada ? document.getElementById("cita").value.trim() : '';
+  const folioNotaEntrada = isConsolidada ? '' : document.getElementById("folio-nota-entrada").value.trim();
   return {
     proveedor: document.getElementById("proveedor").value.trim(),
     tienda: document.getElementById("tienda").value.trim(),
     entrega: document.getElementById("entrega").value.trim(),
-    cita: document.getElementById("cita").value.trim(),
+    cita,
+    folioNotaEntrada,
     folioPedido: document.getElementById("folio-pedido").value.trim(),
     fechaEntrega: document.getElementById("fecha-entrega").value,
   };
@@ -43,7 +47,7 @@ export function recolectarDatosTarimas() {
  * @param {Array} conceptosCFDI - Array de conceptos del CFDI
  * @returns {Array} Array con los productos enriquecidos con códigos y tarimas
  */
-export function recolectarDatosProductos(conceptosCFDI) {
+export function recolectarDatosProductos(conceptosCFDI,isConsolidada) {
   const inputsCodigos = document.querySelectorAll(".input-codigo-producto");
   const productosConCodigo = [];
 
@@ -57,7 +61,7 @@ export function recolectarDatosProductos(conceptosCFDI) {
       productosConCodigo.push({
         ...productoOriginal,
         Codigo: input.value.trim(),
-        NumeroTarima: inputTarima.value || "1",
+        NumeroTarima: isConsolidada ? (inputTarima.value || "1") : "",
       });
     }
   });
@@ -88,7 +92,11 @@ export function contarProductosConCodigo() {
  */
 export function verificarFormularioCompleto() {
   const datosGlobales = recolectarDatosGlobales();
-  const tarimas = recolectarDatosTarimas();
+
+  const isConsolidada = document.getElementById("select-tipo-addenda").value === "Consolidada";
+
+  const tarimas = isConsolidada ? recolectarDatosTarimas() : [];
+  
   const productosConCodigo = contarProductosConCodigo();
   
   const problemas = [];
@@ -100,8 +108,8 @@ export function verificarFormularioCompleto() {
     }
   });
   
-  // Verificar tarimas
-  if (tarimas.length === 0) {
+  // Verificar tarimas solo si es consolidada
+  if (isConsolidada && tarimas.length === 0) {
     problemas.push('No hay tarimas configuradas');
   }
   

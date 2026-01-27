@@ -10,7 +10,7 @@ import { inicializarTemas } from "./js/theme.js";
 
 // --- EVENT LISTENERS ---
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("🚀 Aplicación iniciada - Generador de Addenda Soriana (Modo Oscuro)");
+  console.log("Aplicación iniciada - Generador de Addenda Soriana (Modo Oscuro)");
   
   // Inicializar sistema de temas
   inicializarTemas();
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Event listener para mostrar feedback al usuario
   setupFeedbackListeners();
   
-  console.log("✅ Todos los event listeners configurados correctamente");
+  console.log("Todos los event listeners configurados correctamente");
 });
 
 /**

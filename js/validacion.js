@@ -38,7 +38,7 @@ export function validarFecha(fecha) {
  * @param {Object} datos - Objeto con los datos a validar
  * @returns {Object} Objeto con resultado de validación y errores
  */
-export function validarDatosGlobales(datos) {
+export function validarDatosGlobales(datos, isConsolidada) {
   const errores = [];
   
   if (!validarTextoNoVacio(datos.proveedor)) {
@@ -53,12 +53,16 @@ export function validarDatosGlobales(datos) {
     errores.push('El lugar de entrega es requerido');
   }
   
-  if (!validarTextoNoVacio(datos.cita)) {
+  if (!validarTextoNoVacio(datos.cita) && isConsolidada) {
     errores.push('El número de cita es requerido');
   }
   
   if (!validarTextoNoVacio(datos.folioPedido)) {
     errores.push('El folio de pedido es requerido');
+  }
+
+  if (!validarTextoNoVacio(datos.folioNotaEntrada) && !isConsolidada) {
+    errores.push('El folio de nota de entrada es requerido');
   }
   
   if (!validarFecha(datos.fechaEntrega)) {
@@ -76,7 +80,7 @@ export function validarDatosGlobales(datos) {
  * @param {Array} productos - Array de productos con códigos
  * @returns {Object} Objeto con resultado de validación y errores
  */
-export function validarProductos(productos) {
+export function validarProductos(productos, isConsolidada) {
   const errores = [];
   
   if (!Array.isArray(productos) || productos.length === 0) {
@@ -89,7 +93,7 @@ export function validarProductos(productos) {
       errores.push(`El producto ${index + 1} necesita un código válido`);
     }
     
-    if (!validarNumeroPositivo(producto.NumeroTarima)) {
+    if (!validarNumeroPositivo(producto.NumeroTarima) && isConsolidada) {
       errores.push(`El producto ${index + 1} necesita un número de tarima válido`);
     }
   });

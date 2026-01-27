@@ -50,7 +50,7 @@ function procesarXML(xmlTexto) {
     const comprobanteNode = xmlDoc.querySelector("Comprobante");
     if (!comprobanteNode) {
       throw new Error(
-        "Este no parece ser un archivo CFDI 4.0 válido. No se encontró el nodo 'cfdi:Comprobante'."
+        "Este no parece ser un archivo CFDI 4.0 válido. No se encontró el nodo 'cfdi:Comprobante'.",
       );
     }
 
@@ -66,7 +66,7 @@ function procesarXML(xmlTexto) {
 
     // Extraer impuestos
     const impuestosNode = xmlDoc.querySelector(
-      "Comprobante > Impuestos > Traslados"
+      "Comprobante > Impuestos > Traslados",
     );
 
     let impuestos = { TasaIVA: "0.00" };
@@ -92,7 +92,7 @@ function procesarXML(xmlTexto) {
       if (conceptos.some((c) => c.Descripcion === descripcion)) {
         // Si ya existe un concepto con la misma descripción, sumar cantidades e importes
         const conceptoExistente = conceptos.find(
-          (c) => c.Descripcion === descripcion
+          (c) => c.Descripcion === descripcion,
         );
         conceptoExistente.Cantidad = (
           parseFloat(conceptoExistente.Cantidad) +
@@ -108,7 +108,7 @@ function procesarXML(xmlTexto) {
           Descripcion: nodo.getAttribute("Descripcion"),
           Cantidad: parseFloat(nodo.getAttribute("Cantidad")).toFixed(2),
           ValorUnitario: parseFloat(nodo.getAttribute("ValorUnitario")).toFixed(
-            6
+            6,
           ),
           Importe: parseFloat(nodo.getAttribute("Importe")).toFixed(6),
           TasaIVA: trasladoNode
@@ -132,7 +132,7 @@ function procesarXML(xmlTexto) {
     console.error("Error al parsear el XML:", error);
     alert(
       "Hubo un error al leer el archivo XML. Por favor, asegúrate de que es un archivo válido.\n\nDetalles: " +
-        error.message
+        error.message,
     );
     resetDatosCFDI();
   }
@@ -146,6 +146,11 @@ function procesarXML(xmlTexto) {
  */
 function mostrarFormularios(conceptos) {
   const listaProductosDiv = document.getElementById("productos-lista");
+  const idAddenda = document.getElementById("id-addenda");
+  const tipoAddendaSelect = document.getElementById("select-tipo-addenda");
+
+  tipoAddendaSelect.disabled = true;
+
   listaProductosDiv.innerHTML = "";
 
   if (!conceptos || conceptos.length === 0) {
@@ -155,33 +160,51 @@ function mostrarFormularios(conceptos) {
   }
 
   // Crear un item en el HTML por cada producto
-  conceptos.forEach((producto) => {
-    const itemHTML = `
+  const esConsolidada = tipoAddendaSelect.value === "Consolidada";
+
+  idAddenda.innerHTML = `
+   <label for="${esConsolidada ? "cita" : "folio-nota-entrada"}"> ${esConsolidada ? "Número de Cita:" : "Folio Nota de Entrada:"}</label>
+   <input type="text" id="${esConsolidada ? "cita" : "folio-nota-entrada"}" />`;  
+
+  const htmlProductos = conceptos
+    .map((producto) => {
+      const campoTarima = esConsolidada
+        ? `
+                    <div class="form-control form-control-small">
+                        <label for="tarima-${producto.index}">N° Tarima:</label>
+                        <input type="number" id="tarima-${producto.index}" class="input-tarima-producto" data-index="${producto.index}" min="1" value="1">
+                    </div>`
+        : "";
+
+      return `
             <div class="producto-item">
                 <p class="descripcion">${producto.Descripcion}</p>
                 <p class="detalles">
                     Cantidad: <strong>${producto.Cantidad}</strong> | 
                     Valor Unitario: <strong>$${producto.ValorUnitario}</strong>
                 </p>
-                <div class="producto-item-controles">
+                <div class="${esConsolidada ? "producto-item-controles-consolidada" : "producto-item-controles"}">
                     <div class="form-control">
                         <label for="codigo-${producto.index}">Código (SKU/EAN):</label>
                         <input type="text" id="codigo-${producto.index}" class="input-codigo-producto" data-index="${producto.index}" placeholder="Ingrese el código del producto">
-                    </div>
-                    <div class="form-control form-control-small">
-                        <label for="tarima-${producto.index}">N° Tarima:</label>
-                        <input type="number" id="tarima-${producto.index}" class="input-tarima-producto" data-index="${producto.index}" min="1" value="1">
-                    </div>
+                    </div>${campoTarima}
                 </div>
             </div>
         `;
-    listaProductosDiv.innerHTML += itemHTML;
-  });
+    })
+    .join("");
+
+  listaProductosDiv.innerHTML = htmlProductos;
 
   // --- Lógica para Tarimas ---
   // Limpiar tarimas anteriores y agregar la primera por defecto
-  limpiarTarimas();
-  agregarNuevaTarima();
+  if (esConsolidada) {
+    limpiarTarimas();
+    agregarNuevaTarima();
+  }
+  else {   
+    document.getElementById("codigos_tarimas").classList.add("hidden");
+  }
 
   // Mostrar el contenedor principal del formulario
   document.getElementById("formulario-principal").classList.remove("hidden");
