@@ -65,6 +65,14 @@ h1 {
     cursor: pointer;
     transition: all 0.2s ease;
 }
+
+.contenedor-principal{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 .paso {
     background-color: var(--bg-card);
     border: 1px solid var(--border-primary);
@@ -393,6 +401,12 @@ textarea::placeholder {
     .paso {
         padding: 16px;
         margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .contenedor-principal {
+        grid-template-columns: 1fr;
     }
 }
 

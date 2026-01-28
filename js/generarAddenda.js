@@ -88,7 +88,7 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo,
   // Combinar secciones XML eliminando vacías
   const seccionesXML = [articulosXML, cajasTarimasXML, articulosPorTarimaXML]
     .filter(seccion => seccion.trim())
-    .join('\n        ');
+    .join('        ');
 
   // Construir la addenda completa
   return `<cfdi:Addenda>
@@ -123,8 +123,7 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo,
             <FolioPedido>${datosGlobales.folioPedido}</FolioPedido>
             <Tienda>${datosGlobales.tienda}</Tienda>
             <CantidadArticulos>${totalArticulos}</CantidadArticulos>
-        </Pedidos>
-        ${seccionesXML}
+        </Pedidos>${seccionesXML}
     </DSCargaRemisionProv>
 </cfdi:Addenda>`;
 }
@@ -139,7 +138,8 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo,
 function construirSeccionArticulos(productos, datosGlobales, remision) {
   return productos
     .map(
-      (p) => `<Articulos Id="Articulos${p.index}" RowOrder="${p.index}">
+      (p) => `
+        <Articulos Id="Articulos${p.index}" RowOrder="${p.index}">
             <Proveedor>${datosGlobales.proveedor}</Proveedor>
             <Remision>${remision}</Remision>
             <FolioPedido>${datosGlobales.folioPedido}</FolioPedido>

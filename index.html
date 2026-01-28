@@ -8,20 +8,20 @@
   </head>
   <body>
     <h1>Generador de Addenda (Soriana)</h1>
+    <div class="contenedor-principal">
+      <div class="paso">
+        <h2>Paso 1: Selecciona el tipo de Addenda</h2>
+        <select id="select-tipo-addenda" class="select-tipo">
+          <option value="Consolidada">Consolidada</option>
+          <option value="Extemporanea">Extemporanea</option>
+        </select>
+      </div>
 
-    <div class="paso">
-      <h2>Paso 1: Selecciona el tipo de Addenda</h2>
-      <select id="select-tipo-addenda" class="select-tipo">
-        <option value="Consolidada">Consolidada</option>
-        <option value="Extemporanea">Extemporanea</option>
-      </select>
+      <div class="paso">
+        <h2>Paso 2: Cargar XML Base</h2>
+        <input type="file" id="archivo-xml" accept=".xml" />
+      </div>
     </div>
-
-    <div class="paso">
-      <h2>Paso 2: Cargar XML Base</h2>
-      <input type="file" id="archivo-xml" accept=".xml" />
-    </div>
-
     <div id="formulario-principal" class="hidden">
       <div class="paso">
         <h2>Paso 3: Completar Datos Globales</h2>
@@ -38,11 +38,10 @@
             <label for="entrega">Lugar de Entrega (Tienda):</label>
             <input type="text" id="entrega" />
           </div>
-          <div class="form-control" id="id-addenda">
-          </div>
+          <div class="form-control" id="id-addenda"></div>
           <div class="form-control">
-              <label for="folio-pedido">Folio Pedido</label>
-              <input type="text" id="folio-pedido" />
+            <label for="folio-pedido">Folio Pedido</label>
+            <input type="text" id="folio-pedido" />
           </div>
           <div class="form-control">
             <label for="fecha-entrega">Fecha Entrega Mercancía:</label>
@@ -56,7 +55,7 @@
         <div id="productos-lista"></div>
       </div>
 
-      <div class="paso"  id="codigos_tarimas">
+      <div class="paso" id="codigos_tarimas">
         <h2>Paso 5: Definir Tarimas</h2>
         <div id="tarimas-lista"></div>
         <button id="btn-agregar-tarima" class="btn-secundario">

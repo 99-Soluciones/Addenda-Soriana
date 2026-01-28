@@ -85,12 +85,6 @@
 - Mensajes de error descriptivos
 - Validación antes de generar addenda
 
-### **Interfaz Mejorada**
-- Estados visuales para campos (válido/error)
-- Feedback inmediato al usuario
-- Placeholders informativos
-- Estilos responsive mejorados
-
 ### **Manejo de Errores**
 - Try-catch en operaciones críticas
 - Mensajes de error informativos
@@ -102,22 +96,3 @@
 - Grid system flexible
 - Interfaz usable en pantallas pequeñas
 
-## Cómo Usar
-
-1. **Cargar XML**: Selecciona un archivo CFDI XML válido
-2. **Completar Datos**: Llena todos los campos globales (proveedor, tienda, etc.)
-3. **Asignar Códigos**: Asigna códigos SKU/EAN a cada producto
-4. **Configurar Tarimas**: Agrega tarimas y asigna códigos SSCC
-5. **Generar**: Haz clic en "Generar Addenda" para crear el XML
-
-## Problemas Resueltos
-
-- **Variable `datosCFDI` no definida**: Ahora se maneja centralmente
-- **Contador de tarimas inconsistente**: Estado centralizado
-- **Falta de validación**: Sistema completo de validación
-- **Manejo de errores**: Try-catch y mensajes informativos
-- **Código duplicado**: Funciones reutilizables en utils
-- **Responsabilidades mezcladas**: Módulos especializados
-
-
-**Desarrollado para Soriana Felix - Proyecto Addenda**
