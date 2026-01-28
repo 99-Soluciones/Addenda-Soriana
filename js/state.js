@@ -40,6 +40,7 @@ export function resetDatosCFDI() {
     conceptos: [],
     comprobante: {},
     impuestos: {},
+    bultos: 0,
   };
   appState.isLoaded = false;
 }

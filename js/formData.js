@@ -17,6 +17,7 @@ export function recolectarDatosGlobales() {
     entrega: document.getElementById("entrega").value.trim(),
     cita,
     folioNotaEntrada,
+    numeroBultos: document.getElementById("bultos").value.trim(),
     folioPedido: document.getElementById("folio-pedido").value.trim(),
     fechaEntrega: document.getElementById("fecha-entrega").value,
   };

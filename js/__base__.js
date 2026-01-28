@@ -322,9 +322,6 @@ function generarAddenda() {
     .reduce((acc, p) => acc + parseFloat(p.Cantidad), 0)
     .toFixed(2);
 
-  // E. Construir el XML de la Addenda ---
-
-  // E.1. Crear los nodos <Articulos> (esto no cambia)
   const articulosXML = productosConCodigo
     .map(
       (p) => `
@@ -342,16 +339,11 @@ function generarAddenda() {
     )
     .join("");
 
-  // E.2. Crear los nodos <CajasTarimas> (NUEVO: Bucle)
   const articulosEnEstaTarima = datosCFDI.conceptos.length;
 
   const cajasTarimasXML = tarimas
     .map((tarima, index) => {
-      // Contar cuántos artículos tiene esta tarima, de momento lo dejo comentado por si se necesita
 
-      //   const articulosEnEstaTarima = productosConCodigo.filter(
-      //     (p) => p.NumeroTarima == tarima.numero
-      //   ).length;
       return `
         <CajasTarimas Id="CajaTarima${index}" RowOrder="${index}">
             <Proveedor>${proveedor}</Proveedor>
@@ -380,7 +372,6 @@ function generarAddenda() {
     )
     .join("");
 
-  // E.4. Construir la Addenda Completa (NUEVO: usa totalTarimas)
   const addendaCompleta = `<cfdi:Addenda>
     <DSCargaRemisionProv>
         <Remision Id="Remision0" RowOrder="0">
@@ -420,6 +411,5 @@ function generarAddenda() {
     </DSCargaRemisionProv>
 </cfdi:Addenda>`;
 
-  // --- F. Mostrar el resultado en el textarea ---
   document.getElementById("resultado-xml").value = addendaCompleta.trim();
 }

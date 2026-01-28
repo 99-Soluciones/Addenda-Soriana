@@ -75,10 +75,7 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo,
   const subtotal = datosCFDI.comprobante.SubTotal;
   const iva = datosCFDI.impuestos.TasaIVA;
   const total = datosCFDI.comprobante.Total;
-
-  const cantidadTotalBultos = productosConCodigo
-    .reduce((acc, p) => acc + parseFloat(p.Cantidad), 0)
-    .toFixed(2);
+  const cantidadTotalBultos = parseFloat(datosGlobales.numeroBultos);
 
   // Construir secciones del XML
   const articulosXML = construirSeccionArticulos(productosConCodigo, datosGlobales, remision);

@@ -1,5 +1,5 @@
 import { agregarNuevaTarima, limpiarTarimas } from "./tarimas.js";
-import { setDatosCFDI, resetDatosCFDI } from "./state.js";
+import { setDatosCFDI, resetDatosCFDI, getDatosCFDI } from "./state.js";
 
 /**
  * Carga el archivo XML seleccionado por el usuario y se procesan los datos.
@@ -148,9 +148,17 @@ function mostrarFormularios(conceptos) {
   const listaProductosDiv = document.getElementById("productos-lista");
   const idAddenda = document.getElementById("id-addenda");
   const tipoAddendaSelect = document.getElementById("select-tipo-addenda");
+  const numeroBultosInput = document.getElementById("bultos");
+
+  console.log(getDatosCFDI());
+
+  const numeroBultos = conceptos.reduce((acc, producto) => {
+    return acc + parseFloat(producto.Cantidad);
+  }, 0);
+
+  numeroBultosInput.value = numeroBultos;
 
   tipoAddendaSelect.disabled = true;
-
   listaProductosDiv.innerHTML = "";
 
   if (!conceptos || conceptos.length === 0) {
