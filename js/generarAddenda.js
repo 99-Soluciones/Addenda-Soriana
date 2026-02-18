@@ -135,8 +135,8 @@ function construirAddenda(datosCFDI, datosGlobales, tarimas, productosConCodigo,
 function construirSeccionArticulos(productos, datosGlobales, remision) {
   return productos
     .map(
-      (p) => `
-        <Articulos Id="Articulos${p.index}" RowOrder="${p.index}">
+      (p, index) => `
+        <Articulos Id="Articulos${index}" RowOrder="${index}">
             <Proveedor>${datosGlobales.proveedor}</Proveedor>
             <Remision>${remision}</Remision>
             <FolioPedido>${datosGlobales.folioPedido}</FolioPedido>
@@ -185,8 +185,8 @@ function construirSeccionCajasTarimas(tarimas, datosGlobales, remision, cantidad
 function construirSeccionArticulosPorTarima(productos, datosGlobales, remision) {
   return productos
     .map(
-      (p) => `
-        <ArticulosPorCajaTarima Id="ArticulosPorCajaTarima${p.index}" RowOrder="${p.index}">
+      (p, index) => `
+        <ArticulosPorCajaTarima Id="ArticulosPorCajaTarima${index}" RowOrder="${index}">
             <Proveedor>${datosGlobales.proveedor}</Proveedor>
             <Remision>${remision}</Remision>
             <FolioPedido>${datosGlobales.folioPedido}</FolioPedido>

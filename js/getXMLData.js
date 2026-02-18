@@ -85,8 +85,8 @@ function procesarXML(xmlTexto) {
     // Extraer Conceptos (productos) debo agregar una validacion, si hay varios productos repetidos, que se unan
     const conceptosNodes = xmlDoc.querySelectorAll("Concepto");
     const conceptos = [];
-
-    conceptosNodes.forEach((nodo, index) => {
+    let index = 0;
+    conceptosNodes.forEach((nodo) => {
       const trasladoNode = nodo.querySelector("Traslado");
       const descripcion = nodo.getAttribute("Descripcion");
       if (conceptos.some((c) => c.Descripcion === descripcion)) {
@@ -104,7 +104,7 @@ function procesarXML(xmlTexto) {
         ).toFixed(6);
       } else {
         conceptos.push({
-          index: index,
+          index: index, // Índice para identificación en el DOM
           Descripcion: nodo.getAttribute("Descripcion"),
           Cantidad: parseFloat(nodo.getAttribute("Cantidad")).toFixed(2),
           ValorUnitario: parseFloat(nodo.getAttribute("ValorUnitario")).toFixed(
@@ -117,6 +117,7 @@ function procesarXML(xmlTexto) {
               ).toFixed(2)
             : "0.00",
         });
+        index++; // Incrementar el índice para el siguiente producto
       }
     });
 
